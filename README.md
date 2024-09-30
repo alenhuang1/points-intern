@@ -75,10 +75,8 @@ The Points Management API allows users to manage points for different payers. Us
 
 ### Prerequisites
 
-# Install Python:
-
-# Download and install Python from the official website: python.org.
-# Install the latest version of Python.
+Download and install Python from the official website: python.org.
+Install the latest version of Python.
 
 ### Installation
 
@@ -90,7 +88,7 @@ The Points Management API allows users to manage points for different payers. Us
 
 2. Create a virtual environment:
    ```bash
-   python -m venv venv
+   python3 -m venv venv
    ```
    Windows:
    ```bash
@@ -108,12 +106,12 @@ The Points Management API allows users to manage points for different payers. Us
 
 4. Run the migrations to set up the database:
    ```bash
-   python manage.py migrate
+   python3 manage.py migrate
    ```
 
 5. Start the development server:
    ```bash
-   python manage.py runserver
+   python3 manage.py runserver
    ```
 
 ## Testing with Postman
@@ -147,6 +145,29 @@ You can use Postman to test the API endpoints. Here’s how:
 1. Set the method to `GET`.
 2. Enter the URL: `http://localhost:8000/points/balance`
 3. Click **Send**.
+
+## Clearing the Database for Retesting
+If you want to clear your database to start fresh for retesting, you can follow these steps:
+
+1. First exit out of the development server by:
+- Pressing `Ctrl + C` on your keyboard. This will terminate the server process.
+
+2. Clear the database
+    ```bash
+      python manage.py flush
+    ```
+- This command will remove all data from the database while keeping the database schema intact.
+- You will be prompted to confirm this action by typing "yes".
+
+## Exiting the Server and Virtual Environment,
+To stop the development server running on your terminal, simply:
+- Press `Ctrl + C` on your keyboard. This will terminate the server process.
+
+To deactivate the virtual environment, run:
+```bash
+deactivate
+```
+This command will return you to your system's default environment.
 
 ### Notes
 
