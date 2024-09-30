@@ -154,7 +154,7 @@ If you want to clear your database to start fresh for retesting, you can follow 
 
 2. Clear the database
     ```bash
-      python manage.py flush
+      python3 manage.py flush
     ```
 - This command will remove all data from the database while keeping the database schema intact.
 - You will be prompted to confirm this action by typing "yes".
