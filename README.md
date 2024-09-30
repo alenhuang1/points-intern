@@ -75,8 +75,8 @@ The Points Management API allows users to manage points for different payers. Us
 
 ### Prerequisites
 
-Download and install Python from the official website: python.org.
-Install the latest version of Python.
+- Download and install latest version of Python from the official website: python.org
+- Download Postman from the official website: postman.com/downloads/
 
 ### Installation
 
