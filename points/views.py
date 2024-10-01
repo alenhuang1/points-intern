@@ -34,20 +34,19 @@ def spend(request):
     if total_points < spending:
         return Response('Not enough points',status=status.HTTP_400_BAD_REQUEST)
     
-    transactions = Points.objects.order_by('timestamp')
-    for transaction in transactions:
-        
-        # Check how many points are available to deduct from this transaction
-        points_to_deduct = min(spending, transaction.points)
+    # Filter out all the transactions where the points have been spent and order the rest by timestamp
+    transactions = Points.objects.exclude(points=0).order_by('timestamp')
+    while spending != 0:
+        for transaction in transactions:
+            # Check how many points are available to deduct from this transaction
+            points_to_deduct = min(spending, transaction.points)
 
-        # Deduct points from this transaction
-        spending -= points_to_deduct
-        transaction.points -= points_to_deduct
-        transaction.save()
-        deductions[transaction.payer] =  deductions.get(transaction.payer, 0) + (-points_to_deduct)
-
-        if spending == 0:
-            break
+            # Deduct points from this transaction
+            spending -= points_to_deduct
+            transaction.points -= points_to_deduct
+            
+            transaction.save()
+            deductions[transaction.payer] =  deductions.get(transaction.payer, 0) + (-points_to_deduct)
         
     for payer, points in deductions.items():
         final_deductions.append({'payer' : payer , 'points' : points})

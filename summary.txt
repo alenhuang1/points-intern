@@ -1,0 +1,39 @@
+1. Why did you choose the tools, libraries, and language you used for the coding exercise?
+
+I chose Python and Django because Django has a built-in database, which simplifies the development process, especially for managing models and data without needing external configuration.
+Django's URL routing is intuitive, making it easy to create and manage endpoints. Since I have experience with Django, I'm familiar with its built-in views that allow for simple and efficient testing when needed.
+Additionally, Django provides easy access to the database, which allows me to directly implement features like the points system with minimal effort.
+
+Another key reason for choosing Django is its organized structure, which clearly separates concerns into models, views, and URLs. This makes it much easier to manage different aspects of the application.
+The organization is logical and keeps the codebase clean, scalable, and easy to maintain. By following this structured pattern, it's straightforward to add new features, debug issues.
+
+Django and Python is also the technology that I am the most familiar with, in my previous projects I used Django in order to create API endpoints as well.
+
+
+2. What are the advantages and disadvantages of your solution?
+
+Advantages:
+
+1. In my spend endpoint, I'm filtering out all the transactions that ended up being spent already (points = 0), that way the program doesn't have to check every single transaction every API call.
+
+2. I'm directly modifying the data in the database,this increases performance by reducing layers of abstraction like SQL queries
+
+3. By using Django there is clear separation between my views, urls, and model. There is a clear organization that is compartamentalized and in the case of needing to add another feature I can just make another Django app and it'll be separate from this points feature.
+    This helps to distinct features and makes debugging easier.
+
+Disadvantages:
+
+1. As points are being spent, the transactions are still being stored in the database but points value is equal to 0.
+    I'm making the assumption that a separate history of transactions is kept and that when I spend points, the value of points of a particular transaction will decrease.
+    This could be a problem because as the transactions scale, this can take up more and more storage in the database. Even though the points of a transaction may be 0, they can't be deleted from the database since the balance endpoint still needs to display them as 0.
+
+2. If there are multiple endpoint calls at the same time, there could be multiple changes to the database occuring at the same time which could cause data corruption or changes while one program is running.
+    Make sure that the user can only make 1 API call to the database at once.
+
+3. What has been a favorite school/personal project thus far? What about it that challenged you?
+
+A personal project that I've been working on is called MeetCute and it's an app that I'm currently working on with a couple of friends. It's a date planner application that takes in user input like
+location, budget, range and extracts data by performing API calls to TripAdvisor, Google, and Yelp. With the data, it is passed to AI to generate date ideas that the user can then save and share with others like their SO or friends.
+
+This project was especially challenging since going into it I had no prior experience with the technology stack that I'm currently using and starting from the whole design process I learned a lot about developing an application from scratch.
+Throughout the whole project our goal has been to learn as much information as we can while working with new technology and exploring teamwork in order to create an application that users can enjoy.
